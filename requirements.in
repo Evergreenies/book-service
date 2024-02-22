@@ -1,0 +1,9 @@
+flask
+python-dotenv
+virtualenv
+pip-tools
+flake8
+black
+flask-sqlalchemy
+psycopg2
+alembic
