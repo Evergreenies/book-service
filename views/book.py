@@ -39,7 +39,7 @@ def create_book_entry():
         return "Some error while preserving book details.", 501
 
 
-@app.app.route("/books", methods=["GET"])
+# @app.app.route("/books", methods=["GET"])
 def list_all_books():
     try:
         with session_maker() as session:
