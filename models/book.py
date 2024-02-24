@@ -1,11 +1,13 @@
-from datetime import datetime
-from typing import List
 import uuid
+
+from datetime import datetime
+from typing import Any, List, Mapping
 from sqlalchemy import Column, DateTime, Integer, String, Text
 from sqlalchemy.dialects.postgresql import UUID
-
+from marshmallow import Schema, fields
 from sqlalchemy.orm import validates
-from models.database_setup import db, db_engine, Base
+
+from models.database_setup import Base
 
 
 class Book(Base):
@@ -33,3 +35,39 @@ class Book(Base):
 
     def __repr__(self) -> str:
         return f"<Book {self.title}>"
+
+
+class FlattenList(fields.Field):
+    def _serialize(self, value: Any, attr: str | None, obj: Any, **kwargs):
+        if value is None or len(value) == 0:
+            return []
+        return value.split(", ")
+
+    def _deserialize(
+        self,
+        value: Any,
+        attr: str | None,
+        data: Mapping[str, Any] | None,
+        **kwargs,
+    ):
+        if value is None or len(value) == 0:
+            return ""
+        return ", ".join(value)
+
+
+class BookSchema(Schema):
+    id = fields.UUID()
+    title = fields.String()
+    auther = FlattenList()
+    isbn = fields.String()
+    genre = FlattenList()
+    synopsis = fields.String()
+    publication_date = fields.DateTime()
+    publisher = fields.String()
+    edition = fields.String()
+    language = fields.String()
+    pages = fields.Integer()
+    format = fields.String()
+    cover_image_url = fields.String()
+    created_at = fields.DateTime()
+    updated_at = fields.DateTime()

@@ -1,9 +1,12 @@
-from typing import Any
 import uuid
 import sqlalchemy
+
+from typing import Any
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.ext.declarative import DeferredReflection, declarative_base
+
+# from sqlalchemy.ext.declarative import DeferredReflection  # declarative_base
+from sqlalchemy.orm import sessionmaker, declarative_base
 
 
 from twelve_factor_app_framework.bootstrap import app
@@ -40,10 +43,12 @@ class Engine:
         )
 
 
-Base = declarative_base(cls=DeferredReflection)
+Base = declarative_base()
+
 engine_maker = Engine()
 db = SQLAlchemy(app.app)
 db_engine = engine_maker()
+session_maker = sessionmaker(bind=db_engine)
 
 
 class UUID4(db.TypeDecorator):

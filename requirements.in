@@ -7,3 +7,5 @@ black
 flask-sqlalchemy
 psycopg2
 alembic
+marshmallow
+pytest

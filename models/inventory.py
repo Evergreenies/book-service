@@ -3,7 +3,7 @@ from uuid import uuid4
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 
-from models.database_setup import db, db_engine, Base
+from models.database_setup import Base
 
 
 class Inventory(Base):
