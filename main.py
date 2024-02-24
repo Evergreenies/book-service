@@ -1,4 +1,4 @@
-from twelve_factor_app_framework.bootstrap import app
+from twelve_factor_app import app
 
 from routes import book
 

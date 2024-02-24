@@ -1,6 +1,6 @@
 from werkzeug.routing.converters import UUIDConverter
 
-from twelve_factor_app_framework.bootstrap import app
+from twelve_factor_app import app
 from views import book
 
 app.app.url_map.converters["uuid"] = UUIDConverter

@@ -9,8 +9,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 
-from twelve_factor_app_framework.bootstrap import app
-from twelve_factor_app_framework.configs.config import Config, ConfigStrategy
+from twelve_factor_app import app, Config, ConfigStrategy
 
 
 config = Config.get_instance(ConfigStrategy.ENV_VAR)

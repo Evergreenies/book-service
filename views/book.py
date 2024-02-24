@@ -1,11 +1,8 @@
-from urllib.parse import urldefrag
-from marshmallow.fields import Bool
-from psycopg2.errors import InvalidTextRepresentation
-from flask import jsonify, request
+from flask import request
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.exc import DataError
 
-from twelve_factor_app_framework.bootstrap import app
+from twelve_factor_app import app
 
 from models.book import Book, BookSchema
 from models.database_setup import session_maker
